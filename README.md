@@ -24,5 +24,5 @@ The mappings directory contains the following map files:
 You can easily add the URLs as they appear in your resource. Do notice
 that not all ISOcat Data Categories have been taken along to the CCR.
 
-Also note that the descending order of the mappings is import, i.e.,
+Also note that the descending order of the mappings is important, i.e.,
 the highest numbers have to be mapped first to prevent partial replacements.
