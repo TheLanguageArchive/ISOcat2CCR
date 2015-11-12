@@ -112,10 +112,11 @@ public class Main {
                 // No handle yet, do a lookup in the CCR
                 if (handle == null || handle.trim().equals("")) {
                     URL url = new URL(registry+"/api/find-concepts/?q=uri:*C-"+id+"_*");
+                    //System.err.println("INF: URL["+url+"]");
                     XdmNode resp = SaxonUtils.buildDocument(new StreamSource(url.toString()));
                     SaxonUtils.declareXPathNamespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
                     SaxonUtils.declareXPathNamespace("skos","http://www.w3.org/2004/02/skos/core#");
-                    XdmValue set = SaxonUtils.evaluateXPath(resp, "/rdf:RDF/skos:Concept/@rdf:resource").evaluate();
+                    XdmValue set = SaxonUtils.evaluateXPath(resp, "/rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/2004/02/skos/core#Concept']/@rdf:about").evaluate();
                     if (set.size()==0) {
                         System.err.println("WRN: no CCR match found for id["+id+"] pid["+pid+"]!");
                     } else if (set.size()>1) {
